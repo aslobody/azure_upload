@@ -1,6 +1,6 @@
 <?php
 error_reporting(E_ALL);
-require_once = 'credentials.php';
+require_once 'credentials.php';
 //$url ='https://drupal.hres.ca/md/export';
 $url ='https://ims.hres.ca/md/export';
 $post_fields = array('data_format'=>'json', 'name'=>$mdName, 'password'=>$mdPassword);

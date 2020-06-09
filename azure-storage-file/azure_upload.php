@@ -7,12 +7,13 @@ require_once '../credentials.php';
 
 use MicrosoftAzure\Storage\File\FileRestProxy;
 use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;
+use MicrosoftAzure\Storage\Common\ServicesBuilder;
 
-$connectionString = 'DefaultEndpointsProtocol=https;AccountName=$accountName;AccountKey=$accountKey';
+$connectionString = 'DefaultEndpointsProtocol=https;AccountName='.$accountName.';AccountKey='.$accountKey;
 $fileClient = FileRestProxy::createFileService($connectionString);
 
 // Azure share folder
-$shareName = "dhpid";
+$shareName = "dhpid/DRUPAL";
 
 // local file
 // path to directory
@@ -22,23 +23,26 @@ $uploadDir = '/var/www/html/upload';
 $files = scandir($uploadDir, SCANDIR_SORT_DESCENDING);
 $fileToUpload = $files[0];
 
-$content = file_get_contents($fileToUpload);
+$file = $uploadDir.'/'.$fileToUpload;
+$content = fopen($file, "r");
+
+//$content = file_get_contents($uploadDir.'/'.$fileToUpload);
 
 // upload file
 try {
-  $fileClient->createFileFromContent($shareName, $filename, $content, null);
+  $fileClient->createFileFromContent($shareName, $fileToUpload, $content);
 }
 catch(ServiceException $e){
     $code = $e->getCode();
-    $error_message = $e->getMessage();
-    //file_put_contents("error_log.txt",$code.": ".$error_message,FILE_APPEND);
-    echo $error_message;
+    $error_message = date('m-d-Y_hia').': '.$e->getMessage();
+    file_put_contents("error_log.txt",$code.": ".$error_message,FILE_APPEND);
+    //echo $error_message;
 }
 catch(InvalidArgumentTypeException $e){
     $code = $e->getCode();
-    $error_message = $e->getMessage();
-    //file_put_contents("error_log.txt",$code.": ".$error_message,FILE_APPEND);
-    echo $error_message;
+    $error_message = date('m-d-Y_hia').': '.$e->getMessage();
+    file_put_contents("error_log.txt",$code.": ".$error_message,FILE_APPEND);
+    //echo $error_message;
 }
 
 ?>
