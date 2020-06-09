@@ -1,0 +1,8 @@
+# edit cron job
+# crontab -e
+# list cron job
+# crontab -l
+# to run cron job every 5 min
+# */5 * * * * php /var/www/html/md.php
+# run cron job every day at 8am
+0 8 * * * php /var/www/html/md.php
