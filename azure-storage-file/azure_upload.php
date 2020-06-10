@@ -3,7 +3,7 @@
  * Azure file storage upload
  */
 require_once 'vendor/autoload.php';
-require_once '../credentials.php';
+require_once '/var/www/html/credentials.php';
 
 use MicrosoftAzure\Storage\File\FileRestProxy;
 use MicrosoftAzure\Storage\Common\Exceptions\ServiceException;

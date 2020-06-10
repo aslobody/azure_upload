@@ -9,9 +9,6 @@ git clone https://github.com/aslobody/azure_upload.git
 mkdir upload
 chmod -R 777 /path/to/upload
 ```
-## Update AccountName and AcountKey in azure_upload.php file
-
-$connectionString = 'DefaultEndpointsProtocol=https;AccountName=<yourAccount>;AccountKey=<yourKey>';
 
 ## Update path to directory in azure_upload.php file
 
