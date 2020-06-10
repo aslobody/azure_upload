@@ -14,6 +14,10 @@ chmod -R 777 /path/to/upload
 
 $uploadDir = '/var/www/html/upload';
 
+and
+
+require_once '/var/www/html/credentials.php';
+
 ## Set the cron job to download JSON file from MD API every day at 8am
 
 0 8 * * * php /var/www/html/md.php
